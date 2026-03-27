@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Volume2, VolumeX, X } from 'lucide-react'
+import { Volume2, VolumeX, X, Play } from 'lucide-react'
 
 const WELCOME_TEXT =
   'Welcome to RNS Institute of Technology, Bengaluru. ' +
@@ -13,139 +13,106 @@ const DURATION = 13000
 export default function VoiceNarrator() {
   const [visible, setVisible] = useState(false)
   const [speaking, setSpeaking] = useState(false)
+  const [started, setStarted] = useState(false)
   const [progress, setProgress] = useState(0)
   const timerRef = useRef(null)
   const startTimeRef = useRef(null)
-  const hasSpoken = useRef(false) // guard against StrictMode double-fire
 
   useEffect(() => {
     if (sessionStorage.getItem('narrator_shown')) return
     sessionStorage.setItem('narrator_shown', '1')
-    const t = setTimeout(() => setVisible(true), 900)
+    const t = setTimeout(() => setVisible(true), 800)
     return () => clearTimeout(t)
   }, [])
 
-  useEffect(() => {
-    if (!visible) return
-    if (hasSpoken.current) return
-    hasSpoken.current = true
+  const getVoice = () => {
+    const voices = window.speechSynthesis.getVoices()
+    return (
+      voices.find(v => /Google US English/i.test(v.name)) ||
+      voices.find(v => /Samantha|Karen|Daniel/i.test(v.name)) ||
+      voices.find(v => /en-US/i.test(v.lang)) ||
+      voices[0]
+    )
+  }
 
-    // Voices may not be ready yet in Chrome — wait for them
-    const doSpeak = () => {
-      const synth = window.speechSynthesis
-      if (!synth) return
+  const startSpeaking = () => {
+    const synth = window.speechSynthesis
+    if (!synth) return
+    synth.cancel()
 
-      synth.cancel()
+    const utt = new SpeechSynthesisUtterance(WELCOME_TEXT)
+    utt.rate = 0.9
+    utt.pitch = 1.05
+    utt.volume = 1
+    const voice = getVoice()
+    if (voice) utt.voice = voice
 
-      const utt = new SpeechSynthesisUtterance(WELCOME_TEXT)
-      utt.rate = 0.9
-      utt.pitch = 1.05
-      utt.volume = 1
-
-      const voices = synth.getVoices()
-      const preferred = voices.find(v =>
-        /Google US English|Samantha|Karen|Daniel/i.test(v.name)
-      ) || voices.find(v => /en-US|en-GB/i.test(v.lang))
-      if (preferred) utt.voice = preferred
-
-      utt.onstart = () => {
-        setSpeaking(true)
-        startTimeRef.current = Date.now()
-        timerRef.current = setInterval(() => {
-          const pct = Math.min(99, ((Date.now() - startTimeRef.current) / DURATION) * 100)
-          setProgress(pct)
-        }, 120)
-      }
-
-      utt.onend = () => {
-        setSpeaking(false)
-        setProgress(100)
-        clearInterval(timerRef.current)
-        setTimeout(() => setVisible(false), 900)
-      }
-
-      utt.onerror = () => {
-        setSpeaking(false)
-        clearInterval(timerRef.current)
-      }
-
-      synth.speak(utt)
+    utt.onstart = () => {
+      setSpeaking(true)
+      startTimeRef.current = Date.now()
+      timerRef.current = setInterval(() => {
+        setProgress(Math.min(99, ((Date.now() - startTimeRef.current) / DURATION) * 100))
+      }, 120)
     }
-
-    // If voices already loaded, speak immediately; otherwise wait
-    if (window.speechSynthesis.getVoices().length > 0) {
-      doSpeak()
-    } else {
-      window.speechSynthesis.addEventListener('voiceschanged', doSpeak, { once: true })
+    utt.onend = () => {
+      setSpeaking(false)
+      setProgress(100)
+      clearInterval(timerRef.current)
+      setTimeout(() => setVisible(false), 1000)
     }
-
-    return () => {
-      window.speechSynthesis?.cancel()
+    utt.onerror = () => {
+      setSpeaking(false)
       clearInterval(timerRef.current)
     }
-  }, [visible])
+
+    synth.speak(utt)
+  }
+
+  // User clicks Play — this is the user gesture Chrome needs
+  const handlePlay = () => {
+    setStarted(true)
+    // If voices not loaded yet, wait for them
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.addEventListener('voiceschanged', startSpeaking, { once: true })
+    } else {
+      startSpeaking()
+    }
+  }
+
+  const handleStop = () => {
+    window.speechSynthesis?.cancel()
+    clearInterval(timerRef.current)
+    setSpeaking(false)
+    setStarted(false)
+    setProgress(0)
+  }
 
   const dismiss = () => {
     window.speechSynthesis?.cancel()
     clearInterval(timerRef.current)
-    setSpeaking(false)
     setVisible(false)
-  }
-
-  const toggleMute = () => {
-    if (speaking) {
-      window.speechSynthesis?.cancel()
-      clearInterval(timerRef.current)
-      setSpeaking(false)
-    } else {
-      // re-speak
-      hasSpoken.current = false
-      setProgress(0)
-      const synth = window.speechSynthesis
-      const utt = new SpeechSynthesisUtterance(WELCOME_TEXT)
-      utt.rate = 0.9; utt.pitch = 1.05; utt.volume = 1
-      const voices = synth.getVoices()
-      const preferred = voices.find(v => /Google US English|Samantha|Karen|Daniel/i.test(v.name))
-        || voices.find(v => /en-US|en-GB/i.test(v.lang))
-      if (preferred) utt.voice = preferred
-      utt.onstart = () => {
-        setSpeaking(true)
-        startTimeRef.current = Date.now()
-        timerRef.current = setInterval(() => {
-          setProgress(Math.min(99, ((Date.now() - startTimeRef.current) / DURATION) * 100))
-        }, 120)
-      }
-      utt.onend = () => {
-        setSpeaking(false); setProgress(100)
-        clearInterval(timerRef.current)
-        setTimeout(() => setVisible(false), 900)
-      }
-      utt.onerror = () => { setSpeaking(false); clearInterval(timerRef.current) }
-      synth.speak(utt)
-    }
   }
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ opacity: 0, y: 70 }}
+          initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 70 }}
+          exit={{ opacity: 0, y: 80 }}
           transition={{ type: 'spring', stiffness: 260, damping: 24 }}
           className="fixed bottom-6 left-1/2 z-[9999]"
           style={{ transform: 'translateX(-50%)', width: 'min(480px, 92vw)' }}
         >
           <div className="rounded-2xl p-4 shadow-2xl"
             style={{
-              background: 'rgba(12,12,18,0.94)',
-              border: '1px solid rgba(249,115,22,0.4)',
+              background: 'rgba(12,12,18,0.95)',
+              border: '1px solid rgba(249,115,22,0.45)',
               backdropFilter: 'blur(20px)',
             }}>
 
-            {/* Top row */}
             <div className="flex items-center gap-3 mb-3">
-              {/* Icon with pulse */}
+              {/* Icon */}
               <div className="relative shrink-0">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center"
                   style={{ background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.45)' }}>
@@ -154,7 +121,7 @@ export default function VoiceNarrator() {
                 {speaking && (
                   <motion.div className="absolute inset-0 rounded-full"
                     style={{ border: '2px solid #f97316' }}
-                    animate={{ scale: [1, 1.7], opacity: [0.6, 0] }}
+                    animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
                     transition={{ duration: 1.2, repeat: Infinity }} />
                 )}
               </div>
@@ -162,7 +129,7 @@ export default function VoiceNarrator() {
               <div className="flex-1 min-w-0">
                 <div className="text-white text-sm font-bold">RNSIT Voice Narrator</div>
                 <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                  {speaking ? 'Speaking…' : 'Ready'}
+                  {speaking ? 'Speaking…' : started ? 'Stopped' : 'Tap Play to hear welcome'}
                 </div>
               </div>
 
@@ -178,23 +145,31 @@ export default function VoiceNarrator() {
                 </div>
               )}
 
-              <button onClick={toggleMute}
-                className="w-8 h-8 rounded-lg flex items-center justify-center hover:scale-110 transition-all shrink-0"
-                style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)' }}
-                title={speaking ? 'Stop' : 'Replay'}>
-                {speaking ? <VolumeX size={14} /> : <Volume2 size={14} />}
-              </button>
+              {/* Play / Stop button */}
+              {!speaking ? (
+                <button onClick={handlePlay}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white text-xs font-bold transition-all hover:scale-105 shrink-0"
+                  style={{ background: 'var(--accent, #f97316)' }}>
+                  <Play size={12} fill="white" /> Play
+                </button>
+              ) : (
+                <button onClick={handleStop}
+                  className="w-8 h-8 rounded-lg flex items-center justify-center hover:scale-110 transition-all shrink-0"
+                  style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)' }}>
+                  <VolumeX size={14} />
+                </button>
+              )}
+
               <button onClick={dismiss}
                 className="w-8 h-8 rounded-lg flex items-center justify-center hover:scale-110 transition-all shrink-0"
-                style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)' }}
-                title="Dismiss">
+                style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)' }}>
                 <X size={14} />
               </button>
             </div>
 
             {/* Text */}
             <div className="text-xs mb-3 leading-relaxed"
-              style={{ color: 'rgba(255,255,255,0.55)', fontStyle: 'italic' }}>
+              style={{ color: 'rgba(255,255,255,0.5)', fontStyle: 'italic' }}>
               "{WELCOME_TEXT}"
             </div>
 
