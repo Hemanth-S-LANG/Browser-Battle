@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { departments } from '../data/college'
 import AnimatedSection from '../components/AnimatedSection'
+import TryBeforeYouJoin from '../components/TryBeforeYouJoin'
 
 // ── Animated Counter ──────────────────────────────────────
 function Counter({ end, suffix = '', duration = 1500 }) {
@@ -129,7 +130,7 @@ function Gallery({ images }) {
 }
 
 // ── Tab System ────────────────────────────────────────────
-const TABS = ['Overview', 'Faculty', 'Labs', 'Achievements', 'Gallery']
+const TABS = ['Overview', 'Faculty', 'Labs', 'Achievements', 'Gallery', 'Try It']
 
 // ── Main Page ─────────────────────────────────────────────
 export default function DepartmentDetail() {
@@ -349,6 +350,14 @@ export default function DepartmentDetail() {
                     <p className="text-xs t-m mb-5">Click any image to view fullscreen</p>
                     <Gallery images={dept.gallery} />
                   </div>
+                </motion.div>
+              )}
+
+              {/* TRY IT TAB */}
+              {activeTab === 'Try It' && (
+                <motion.div key="tryit"
+                  initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}>
+                  <TryBeforeYouJoin deptId={dept.id} />
                 </motion.div>
               )}
 
