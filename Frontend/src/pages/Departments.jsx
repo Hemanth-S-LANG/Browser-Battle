@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Search, ArrowRight } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import AnimatedSection from '../components/AnimatedSection'
+import CompareDepartments from '../components/CompareDepartments'
 import { departments } from '../data/college'
 
 export default function Departments() {
@@ -69,6 +70,17 @@ export default function Departments() {
             <p>No departments found for "{query}"</p>
           </div>
         )}
+      </section>
+
+      {/* Compare Tool */}
+      <section className="section-padding max-w-7xl mx-auto px-4 pb-16">
+        <AnimatedSection className="text-center mb-8">
+          <h2 className="text-3xl font-bold t-h mb-2">Compare <span className="text-gradient">Departments</span></h2>
+          <p className="t-m text-sm">Pick 2–3 departments and compare placements, subjects & opportunities</p>
+        </AnimatedSection>
+        <AnimatedSection>
+          <CompareDepartments />
+        </AnimatedSection>
       </section>
     </div>
   )
