@@ -13,7 +13,6 @@ const DURATION = 13000
 export default function VoiceNarrator() {
   const [visible, setVisible] = useState(false)
   const [speaking, setSpeaking] = useState(false)
-  const [started, setStarted] = useState(false)
   const [progress, setProgress] = useState(0)
   const timerRef = useRef(null)
   const startTimeRef = useRef(null)
