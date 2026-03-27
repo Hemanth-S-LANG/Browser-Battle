@@ -17,6 +17,7 @@ const navLinks = [
       { label: 'Placement Dashboard', path: '/placement-dashboard' },
       { label: 'Research', path: '/research' },
       { label: 'Campus Life', path: '/campus-life' },
+      { label: 'Virtual Tour', path: '/virtual-tour' },
       { label: 'Events', path: '/events' },
       { label: 'Alumni', path: '/alumni' },
       { label: 'Students', path: '/students' },

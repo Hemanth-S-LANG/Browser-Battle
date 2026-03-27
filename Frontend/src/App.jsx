@@ -19,6 +19,7 @@ import Apply from './pages/Apply'
 import PlacementDashboard from './pages/PlacementDashboard'
 import EventRegister from './pages/EventRegister'
 import AlumniRegister from './pages/AlumniRegister'
+import VirtualTour from './pages/VirtualTour'
 import ScrollToTop from './components/ScrollToTop'
 import ParticleCanvas from './components/ParticleCanvas'
 import Chatbot from './components/Chatbot'
@@ -62,6 +63,7 @@ export default function App() {
           <Route path="/placement-dashboard" element={<PlacementDashboard />} />
           <Route path="/events/register/:id" element={<EventRegister />} />
           <Route path="/alumni/register" element={<AlumniRegister />} />
+          <Route path="/virtual-tour" element={<VirtualTour />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
