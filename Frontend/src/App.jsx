@@ -23,6 +23,7 @@ import VirtualTour from './pages/VirtualTour'
 import ScrollToTop from './components/ScrollToTop'
 import ParticleCanvas from './components/ParticleCanvas'
 import Chatbot from './components/Chatbot'
+import VoiceNarrator from './components/VoiceNarrator'
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -69,6 +70,7 @@ export default function App() {
           <Footer />
         </div>
         <Chatbot />
+        <VoiceNarrator />
       </BrowserRouter>
     </div>
   )
