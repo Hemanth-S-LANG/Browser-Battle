@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import AnimatedSection from '../components/AnimatedSection'
+import CampusMap from '../components/CampusMap'
 
 const clubs = [
   { name: 'IEEE Student Chapter', category: 'Technical', members: 250, desc: 'Connecting students with global IEEE network for technical excellence.' },
@@ -15,10 +16,10 @@ const clubs = [
 
 const facilities = [
   { name: 'Central Library', desc: '50,000+ books, digital resources, 24/7 reading room', image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&q=80' },
-  { name: 'Sports Complex', desc: 'Cricket ground, basketball, volleyball, badminton courts', image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&q=80' },
+  { name: 'Sports Complex', desc: 'Cricket ground, basketball, volleyball, badminton courts', image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80' },
   { name: 'Hostel', desc: 'Separate hostels for boys and girls with modern amenities', image: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=400&q=80' },
   { name: 'Cafeteria', desc: 'Multi-cuisine food court with hygienic and affordable meals', image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=80' },
-  { name: 'Auditorium', desc: '1500-seat auditorium for events, seminars, and conferences', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80' },
+  { name: 'Auditorium', desc: '1500-seat auditorium for events, seminars, and conferences', image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&q=80' },
   { name: 'Medical Center', desc: 'On-campus health center with qualified medical staff', image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80' },
 ]
 
@@ -50,9 +51,9 @@ export default function CampusLife() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {clubs.map((club, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10 hover:shadow-lg hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10 hover:shadow-lg hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <div className="flex items-start justify-between mb-3">
-                  <span className="px-2 py-1 bg-[rgba(59,130,246,0.12)] text-blue-600 dark:text-blue-400 text-xs rounded-lg font-medium">{club.category}</span>
+                  <span className="px-2 py-1 bg-[rgba(249,115,22,0.12)] text-orange-500 dark:text-orange-400 text-xs rounded-lg font-medium">{club.category}</span>
                   <span className="text-xs t-h-mut">{club.members} members</span>
                 </div>
                 <h3 className="font-bold t-h mb-2">{club.name}</h3>
@@ -72,7 +73,7 @@ export default function CampusLife() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {facilities.map((f, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="rounded-2xl overflow-hidden shadow-sm border border-blue-500/10 hover:shadow-xl hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+                <div className="rounded-2xl overflow-hidden shadow-sm border border-orange-500/10 hover:shadow-xl hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                   <div className="h-44 overflow-hidden">
                     <img src={f.image} alt={f.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
                   </div>
@@ -85,6 +86,17 @@ export default function CampusLife() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Interactive Campus Map */}
+      <section className="section-padding max-w-7xl mx-auto px-4">
+        <AnimatedSection className="text-center mb-10">
+          <h2 className="text-3xl font-bold t-h mb-3">Interactive <span className="text-gradient">Campus Map</span></h2>
+          <p className="t-m">Click on any building to explore facilities</p>
+        </AnimatedSection>
+        <AnimatedSection>
+          <CampusMap />
+        </AnimatedSection>
       </section>
 
       {/* Gallery with Lightbox */}

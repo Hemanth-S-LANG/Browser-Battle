@@ -5,21 +5,21 @@
 ───────────────────────────────────────── */
 :root {
   --bg:          #f8fafc;
-  --bg-alt:      #f1f5f9;
+  --bg-alt:      #fff7ed;
   --surface:     #ffffff;
   --surface2:    #f8fafc;
   --card:        #ffffff;
   --card-border: #e2e8f0;
   --nav:         rgba(255,255,255,0.95);
-  --hero:        linear-gradient(135deg,#dbeafe 0%,#f0f9ff 50%,#ede9fe 100%);
+  --hero:        linear-gradient(135deg,#fff7ed 0%,#ffedd5 50%,#fef3c7 100%);
 
-  --t1: #0f172a;   /* headings */
-  --t2: #334155;   /* body */
-  --t3: #64748b;   /* muted */
-  --t4: #94a3b8;   /* very muted */
+  --t1: #0f172a;
+  --t2: #334155;
+  --t3: #64748b;
+  --t4: #94a3b8;
 
-  --accent:      #2563eb;
-  --accent2:     #0891b2;
+  --accent:      #f97316;
+  --accent2:     #ea580c;
   --border:      #e2e8f0;
   --shadow:      0 4px 24px rgba(0,0,0,0.08);
   --shadow-lg:   0 8px 40px rgba(0,0,0,0.12);
@@ -29,25 +29,25 @@
    DARK MODE
 ───────────────────────────────────────── */
 .dark {
-  --bg:          #020817;
-  --bg-alt:      #0a1628;
-  --surface:     #0f172a;
-  --surface2:    #0d1b2e;
-  --card:        rgba(15,23,42,0.8);
-  --card-border: rgba(96,165,250,0.12);
-  --nav:         rgba(2,8,23,0.92);
-  --hero:        radial-gradient(ellipse at top,#0f1f3d 0%,#020817 70%);
+  --bg:          #0c0a09;
+  --bg-alt:      #1c1008;
+  --surface:     #1a0f05;
+  --surface2:    #150c04;
+  --card:        rgba(28,16,8,0.85);
+  --card-border: rgba(249,115,22,0.15);
+  --nav:         rgba(12,10,9,0.92);
+  --hero:        radial-gradient(ellipse at top,#3d1a00 0%,#0c0a09 70%);
 
   --t1: #f1f5f9;
   --t2: #cbd5e1;
   --t3: #94a3b8;
   --t4: #475569;
 
-  --accent:      #3b82f6;
-  --accent2:     #06b6d4;
-  --border:      rgba(96,165,250,0.12);
-  --shadow:      0 4px 24px rgba(0,0,0,0.4);
-  --shadow-lg:   0 8px 40px rgba(0,0,0,0.5);
+  --accent:      #f97316;
+  --accent2:     #ea580c;
+  --border:      rgba(249,115,22,0.15);
+  --shadow:      0 4px 24px rgba(0,0,0,0.5);
+  --shadow-lg:   0 8px 40px rgba(0,0,0,0.6);
 }
 
 /* ─────────────────────────────────────────
@@ -106,9 +106,9 @@ body {
   border-radius: 0.75rem;
   padding: 0.75rem 2rem;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(37,99,235,0.35);
+  box-shadow: 0 4px 20px rgba(249,115,22,0.4);
 }
-.btn-primary:hover { transform: scale(1.04); box-shadow: 0 6px 28px rgba(37,99,235,0.5); }
+.btn-primary:hover { transform: scale(1.04); box-shadow: 0 6px 28px rgba(249,115,22,0.55); }
 
 .btn-outline {
   border: 1.5px solid var(--card-border);
@@ -118,7 +118,7 @@ body {
   padding: 0.75rem 2rem;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
-.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(37,99,235,0.06); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(249,115,22,0.06); }
 
 /* ─────────────────────────────────────────
    BADGE / TAG
@@ -131,16 +131,16 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: rgba(37,99,235,0.1);
+  background: rgba(249,115,22,0.1);
   color: var(--accent);
-  border: 1px solid rgba(37,99,235,0.2);
+  border: 1px solid rgba(249,115,22,0.25);
 }
 
 /* ─────────────────────────────────────────
    GRADIENT TEXT
 ───────────────────────────────────────── */
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  background: linear-gradient(135deg, #f97316, #ea580c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -160,8 +160,8 @@ body {
   66%      { transform: translateY(-7px) rotate(-1deg); }
 }
 @keyframes pulse-glow {
-  0%,100% { box-shadow: 0 0 16px rgba(37,99,235,0.3); }
-  50%      { box-shadow: 0 0 36px rgba(37,99,235,0.6); }
+  0%,100% { box-shadow: 0 0 16px rgba(249,115,22,0.4); }
+  50%      { box-shadow: 0 0 36px rgba(249,115,22,0.7); }
 }
 @keyframes shimmer {
   0%   { background-position: -200% center; }
@@ -173,7 +173,7 @@ body {
 .animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
 
 .shimmer-text {
-  background: linear-gradient(90deg,#2563eb,#7c3aed,#0891b2,#7c3aed,#2563eb);
+  background: linear-gradient(90deg,#f97316,#dc2626,#ea580c,#dc2626,#f97316);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

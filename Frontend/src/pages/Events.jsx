@@ -47,12 +47,12 @@ export default function Events() {
             <div className="relative flex-1">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 t-h-mut" />
               <input type="text" placeholder="Search events..." value={query} onChange={e => setQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 t-h focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm" />
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 t-h focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm" />
             </div>
             <div className="flex gap-2">
               {['All', 'Upcoming', 'Past'].map(t => (
                 <button key={t} onClick={() => setTab(t)}
-                  className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${tab === t ? 'bg-blue-600 t-h' : 'bg-[rgba(15,23,42,0.5)] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}
+                  className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${tab === t ? 'bg-orange-500 t-h' : 'bg-[rgba(15,23,42,0.5)] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}
                 >
                   {t}
                 </button>
@@ -62,7 +62,7 @@ export default function Events() {
           <div className="flex flex-wrap gap-2">
             {categories.map(cat => (
               <button key={cat} onClick={() => setCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${category === cat ? 'bg-blue-600 t-h' : 'bg-[rgba(15,23,42,0.5)] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${category === cat ? 'bg-orange-500 t-h' : 'bg-[rgba(15,23,42,0.5)] text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}`}
               >
                 {cat}
               </button>
@@ -74,12 +74,12 @@ export default function Events() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((event, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
-              <div className="group rounded-2xl overflow-hidden shadow-sm border border-blue-500/10 hover:shadow-xl hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="group rounded-2xl overflow-hidden shadow-sm border border-orange-500/10 hover:shadow-xl hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <div className="relative h-48 overflow-hidden">
                   <img src={event.image} alt={event.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute top-3 left-3 flex gap-2">
                     <span className={`px-2 py-1 rounded-lg text-xs font-semibold ${statusColors[event.status]}`}>{event.status}</span>
-                    <span className="px-2 py-1 bg-blue-600 t-h rounded-lg text-xs">{event.category}</span>
+                    <span className="px-2 py-1 bg-orange-500 t-h rounded-lg text-xs">{event.category}</span>
                   </div>
                 </div>
                 <div className="p-5">

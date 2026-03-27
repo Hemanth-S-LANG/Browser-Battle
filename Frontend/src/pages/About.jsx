@@ -3,6 +3,7 @@ import { Award, Target, Eye, Users, Building2, BookOpen, Trophy, Star } from 'lu
 import PageHero from '../components/PageHero'
 import AnimatedSection from '../components/AnimatedSection'
 import { useRef, useEffect, useState } from 'react'
+import { collegeInfo, stats } from '../data/college'
 
 function useCountUp(end, duration = 2000) {
   const [count, setCount] = useState(0)
@@ -29,7 +30,7 @@ function WhiteStat({ value, label, suffix = '+' }) {
   return (
     <div ref={ref} className="t-h text-center py-4">
       <div className="text-4xl font-bold mb-1">{count.toLocaleString()}{suffix}</div>
-      <div className="text-blue-100 text-sm">{label}</div>
+      <div className="text-orange-100 text-sm">{label}</div>
     </div>
   )
 }
@@ -65,11 +66,12 @@ export default function About() {
       <section className="section-padding max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <AnimatedSection direction="right">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80"
-              alt="Campus" className="rounded-2xl shadow-xl w-full h-80 object-cover" />
+            <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=700&q=80"
+              alt="Campus" className="rounded-2xl shadow-xl w-full h-80 object-cover"
+              style={{ border: '1px solid var(--card-border)' }} />
           </AnimatedSection>
           <AnimatedSection direction="left">
-            <span className="inline-block px-3 py-1 rounded-full bg-[rgba(59,130,246,0.12)] text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">Our Story</span>
+            <span className="inline-block px-3 py-1 rounded-full bg-[rgba(249,115,22,0.12)] text-orange-500 dark:text-orange-400 text-sm font-medium mb-4">Our Story</span>
             <h2 className="text-3xl font-bold t-h mb-4">
               Building Engineers Since <span className="text-gradient">2001</span>
             </h2>
@@ -91,31 +93,26 @@ export default function About() {
           </AnimatedSection>
           <div className="grid md:grid-cols-2 gap-8">
             <AnimatedSection delay={0.1}>
-              <div className="rounded-2xl p-8 shadow-sm border border-blue-500/10 h-full" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
-                <div className="w-12 h-12 rounded-xl bg-[rgba(59,130,246,0.12)] flex items-center justify-center mb-4">
-                  <Eye className="text-blue-600" size={24} />
+              <div className="rounded-2xl p-8 shadow-sm border border-orange-500/10 h-full" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+                <div className="w-12 h-12 rounded-xl bg-[rgba(249,115,22,0.12)] flex items-center justify-center mb-4">
+                  <Eye className="text-orange-500" size={24} />
                 </div>
                 <h3 className="text-xl font-bold t-h mb-3">Our Vision</h3>
-                <p className="t-h-sec leading-relaxed">
-                  To be a globally recognized institution of excellence in technical education, research, and innovation, producing competent engineers and leaders who contribute to the sustainable development of society.
+                <p className="t-b leading-relaxed">
+                  {collegeInfo.vision}
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection delay={0.2}>
-              <div className="rounded-2xl p-8 shadow-sm border border-blue-500/10 h-full" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
-                <div className="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center mb-4">
-                  <Target className="text-cyan-600" size={24} />
+              <div className="rounded-2xl p-8 shadow-sm border border-orange-500/10 h-full" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+                <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-cyan-900/30 flex items-center justify-center mb-4">
+                  <Target className="text-orange-600" size={24} />
                 </div>
                 <h3 className="text-xl font-bold t-h mb-3">Our Mission</h3>
-                <ul className="space-y-2 t-h-sec">
-                  {[
-                    'Provide quality technical education with strong fundamentals',
-                    'Foster research, innovation, and entrepreneurship',
-                    'Develop industry-ready professionals with ethical values',
-                    'Build partnerships with global institutions and industries',
-                  ].map((m, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2 shrink-0" />
+                <ul className="space-y-2 t-b">
+                  {collegeInfo.mission.map((m, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2 shrink-0" />
                       {m}
                     </li>
                   ))}
@@ -127,14 +124,9 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="section-padding" style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(6,182,212,0.1))", borderTop: "1px solid rgba(96,165,250,0.1)", borderBottom: "1px solid rgba(96,165,250,0.1)" }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { value: 5000, label: 'Students', suffix: '+' },
-            { value: 300, label: 'Faculty Members', suffix: '+' },
-            { value: 95, label: 'Placement Rate', suffix: '%' },
-            { value: 50, label: 'Research Papers/Year', suffix: '+' },
-          ].map((s, i) => (
+      <section className="section-padding t-bg-alt" style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+        <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {stats.slice(0, 12).map((s, i) => (
             <WhiteStat key={i} value={s.value} label={s.label} suffix={s.suffix} />
           ))}
         </div>
@@ -148,9 +140,9 @@ export default function About() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {achievements.map(({ icon: Icon, title, desc }, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="text-center p-6 rounded-2xl shadow-sm border border-blue-500/10 hover:shadow-lg transition-shadow" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
-                <div className="w-14 h-14 rounded-2xl bg-[rgba(59,130,246,0.12)] flex items-center justify-center mx-auto mb-4">
-                  <Icon className="text-blue-600" size={28} />
+              <div className="text-center p-6 rounded-2xl shadow-sm border border-orange-500/10 hover:shadow-lg transition-shadow" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+                <div className="w-14 h-14 rounded-2xl bg-[rgba(249,115,22,0.12)] flex items-center justify-center mx-auto mb-4">
+                  <Icon className="text-orange-500" size={28} />
                 </div>
                 <h3 className="font-bold t-h mb-1">{title}</h3>
                 <p className="text-sm t-h-mut">{desc}</p>
@@ -167,13 +159,13 @@ export default function About() {
             <h2 className="text-3xl font-bold t-h mb-3">Our <span className="text-gradient">Journey</span></h2>
           </AnimatedSection>
           <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-blue-200 dark:bg-blue-900" />
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-orange-200 dark:bg-orange-900" />
             {milestones.map((m, i) => (
               <AnimatedSection key={i} delay={i * 0.1} className="relative flex gap-6 mb-8">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center t-h text-xs font-bold shrink-0 shadow-lg z-10">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center t-h text-xs font-bold shrink-0 shadow-lg z-10">
                   {m.year}
                 </div>
-                <div className="rounded-xl p-4 shadow-sm border border-blue-500/10 flex-1 mt-3" style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
+                <div className="rounded-xl p-4 shadow-sm border border-orange-500/10 flex-1 mt-3" style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
                   <p className="t-h-sec">{m.event}</p>
                 </div>
               </AnimatedSection>

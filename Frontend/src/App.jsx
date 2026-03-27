@@ -15,8 +15,10 @@ import Events from './pages/Events'
 import Alumni from './pages/Alumni'
 import Contact from './pages/Contact'
 import Students from './pages/Students'
+import Apply from './pages/Apply'
 import ScrollToTop from './components/ScrollToTop'
 import ParticleCanvas from './components/ParticleCanvas'
+import Chatbot from './components/Chatbot'
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -53,10 +55,12 @@ export default function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/alumni" element={<Alumni />} />
             <Route path="/students" element={<Students />} />
+          <Route path="/apply" element={<Apply />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />
         </div>
+        <Chatbot />
       </BrowserRouter>
     </div>
   )

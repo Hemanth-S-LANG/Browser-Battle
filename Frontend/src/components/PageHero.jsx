@@ -6,9 +6,9 @@ export default function PageHero({ title, subtitle, breadcrumb }) {
       style={{ background: 'var(--hero)' }}
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 rounded-full blur-3xl opacity-20"
-        style={{ background: 'radial-gradient(ellipse, #3b82f6, transparent)' }} />
+        style={{ background: 'radial-gradient(ellipse, #f97316, transparent)' }} />
       <div className="absolute inset-0 opacity-[0.04]"
-        style={{ backgroundImage: 'linear-gradient(rgba(59,130,246,1) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+        style={{ backgroundImage: 'linear-gradient(rgba(249,115,22,1) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
       <div className="relative z-10 text-center px-4">
         {breadcrumb && (

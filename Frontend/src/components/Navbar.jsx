@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react'
+import RNSITLogo from './RNSITLogo'
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -52,13 +53,8 @@ export default function Navbar({ darkMode, setDarkMode }) {
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-lg animate-pulse-glow"
-              style={{ background: 'linear-gradient(135deg,var(--accent),var(--accent2))' }}>R</div>
-            <div className="hidden sm:block">
-              <div className="font-black text-sm tracking-wider" style={{ color: 'var(--t1)' }}>RNSIT</div>
-              <div className="text-xs tracking-widest uppercase" style={{ color: 'var(--t3)' }}>Institute of Technology</div>
-            </div>
+          <Link to="/" className="flex items-center">
+            <RNSITLogo height={44} />
           </Link>
 
           {/* Desktop links */}
@@ -68,7 +64,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
                 <div key={link.label} className="relative"
                   onMouseEnter={() => setDropdown(link.label)}
                   onMouseLeave={() => setDropdown(null)}>
-                  <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-blue-500/10"
+                  <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-orange-500/10"
                     style={{ color: 'var(--t2)' }}>
                     {link.label} <ChevronDown size={13} />
                   </button>
@@ -84,7 +80,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
                       >
                         {link.children.map(child => (
                           <Link key={child.path} to={child.path}
-                            className="block px-4 py-2.5 text-sm transition-colors hover:bg-blue-500/10"
+                            className="block px-4 py-2.5 text-sm transition-colors hover:bg-orange-500/10"
                             style={{ color: 'var(--t2)', borderBottom: '1px solid var(--border)' }}
                           >
                             {child.label}
@@ -96,13 +92,13 @@ export default function Navbar({ darkMode, setDarkMode }) {
                 </div>
               ) : (
                 <Link key={link.path} to={link.path}
-                  className="relative px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-blue-500/10"
+                  className="relative px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-orange-500/10"
                   style={linkStyle(link.path)}
                 >
                   {location.pathname === link.path && (
                     <motion.span layoutId="nav-pill"
                       className="absolute inset-0 rounded-lg"
-                      style={{ background: 'rgba(37,99,235,0.08)' }} />
+                      style={{ background: 'rgba(249,115,22,0.08)' }} />
                   )}
                   <span className="relative z-10">{link.label}</span>
                 </Link>
@@ -113,15 +109,15 @@ export default function Navbar({ darkMode, setDarkMode }) {
           {/* Actions */}
           <div className="flex items-center gap-2">
             <button onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-lg transition-colors hover:bg-blue-500/10"
+              className="p-2 rounded-lg transition-colors hover:bg-orange-500/10"
               style={{ color: 'var(--t3)' }}>
               {darkMode ? <Sun size={17} /> : <Moon size={17} />}
             </button>
-            <Link to="/admissions" className="btn-primary hidden md:flex items-center text-sm px-4 py-2">
+            <Link to="/apply" className="btn-primary hidden md:flex items-center text-sm px-4 py-2">
               Apply Now
             </Link>
             <button onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 rounded-lg transition-colors hover:bg-blue-500/10"
+              className="lg:hidden p-2 rounded-lg transition-colors hover:bg-orange-500/10"
               style={{ color: 'var(--t3)' }}>
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -146,7 +142,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
                     <div className="px-3 py-2 text-xs font-bold tracking-widest uppercase" style={{ color: 'var(--t4)' }}>{link.label}</div>
                     {link.children.map(child => (
                       <Link key={child.path} to={child.path}
-                        className="block px-6 py-2 text-sm rounded-lg transition-colors hover:bg-blue-500/10"
+                        className="block px-6 py-2 text-sm rounded-lg transition-colors hover:bg-orange-500/10"
                         style={{ color: 'var(--t2)' }}>
                         {child.label}
                       </Link>
@@ -154,13 +150,13 @@ export default function Navbar({ darkMode, setDarkMode }) {
                   </div>
                 ) : (
                   <Link key={link.path} to={link.path}
-                    className="block px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-blue-500/10"
+                    className="block px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-orange-500/10"
                     style={linkStyle(link.path)}>
                     {link.label}
                   </Link>
                 )
               )}
-              <Link to="/admissions" className="btn-primary block text-center text-sm mt-3">Apply Now</Link>
+              <Link to="/apply" className="btn-primary block text-center text-sm mt-3">Apply Now</Link>
             </div>
           </motion.div>
         )}

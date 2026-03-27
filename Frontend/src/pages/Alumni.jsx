@@ -25,7 +25,7 @@ export default function Alumni() {
         image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80" />
 
       {/* Stats */}
-      <section className="py-12" style={{ background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(6,182,212,0.1))", borderTop: "1px solid rgba(96,165,250,0.1)", borderBottom: "1px solid rgba(96,165,250,0.1)" }}>
+      <section className="py-12" style={{ background: "linear-gradient(135deg, rgba(249,115,22,0.15), rgba(234,88,12,0.1))", borderTop: "1px solid rgba(249,115,22,0.1)", borderBottom: "1px solid rgba(249,115,22,0.1)" }}>
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 t-h text-center">
           {[
             { value: '15,000+', label: 'Alumni Worldwide' },
@@ -35,7 +35,7 @@ export default function Alumni() {
           ].map((s, i) => (
             <div key={i}>
               <div className="text-3xl font-bold mb-1">{s.value}</div>
-              <div className="text-blue-100 text-sm">{s.label}</div>
+              <div className="text-orange-100 text-sm">{s.label}</div>
             </div>
           ))}
         </div>
@@ -49,19 +49,19 @@ export default function Alumni() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {alumni.map((a, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10 hover:shadow-xl hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10 hover:shadow-xl hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <div className="flex items-center gap-4 mb-4">
-                  <img src={a.avatar} alt={a.name} className="w-16 h-16 rounded-full object-cover ring-2 ring-blue-100 dark:ring-blue-900" />
+                  <img src={a.avatar} alt={a.name} className="w-16 h-16 rounded-full object-cover ring-2 ring-orange-100 dark:ring-orange-900" />
                   <div>
                     <h3 className="font-bold t-h">{a.name}</h3>
                     <p className="text-xs text-gray-500">{a.batch}</p>
                   </div>
                 </div>
                 <div className="mb-4">
-                  <div className="font-semibold text-blue-600 dark:text-blue-400 text-sm">{a.company}</div>
+                  <div className="font-semibold text-orange-500 dark:text-orange-400 text-sm">{a.company}</div>
                   <div className="text-sm text-gray-500">{a.role}</div>
                 </div>
-                <a href={a.linkedin} className="flex items-center gap-2 text-xs t-h-mut hover:text-blue-600 transition-colors">
+                <a href={a.linkedin} className="flex items-center gap-2 text-xs t-h-mut hover:text-orange-500 transition-colors">
                   <span className="text-xs font-bold">in</span> Connect on LinkedIn
                 </a>
               </div>
@@ -79,13 +79,13 @@ export default function Alumni() {
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+                <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                   <p className="t-h-sec italic mb-4 text-sm">"{t.text}"</p>
                   <div className="flex items-center gap-3">
                     <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
                     <div>
                       <div className="font-semibold t-h text-sm">{t.name}</div>
-                      <div className="text-xs text-blue-600">{t.company}</div>
+                      <div className="text-xs text-orange-500">{t.company}</div>
                     </div>
                   </div>
                 </div>
@@ -101,10 +101,10 @@ export default function Alumni() {
           <h2 className="text-3xl font-bold t-h mb-4">Join the Alumni Network</h2>
           <p className="t-h-mut mb-8">Stay connected, give back, and help shape the next generation of RNSIT engineers.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="#" className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 t-h font-semibold rounded-xl hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2">
+            <a href="#" className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 t-h font-semibold rounded-xl hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2">
               Register as Alumni <ArrowRight size={16} />
             </a>
-            <a href="#" className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:border-blue-500 hover:text-blue-600 transition-all flex items-center gap-2">
+            <a href="#" className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:border-orange-500 hover:text-orange-500 transition-all flex items-center gap-2">
               <Globe size={16} /> Alumni Portal
             </a>
           </div>

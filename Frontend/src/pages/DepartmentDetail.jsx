@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, ArrowLeft, FlaskConical, GraduationCap, Users, Trophy } from 'lucide-react'
-import { departments } from '../data/departments'
+import { departments } from '../data/college'
 import AnimatedSection from '../components/AnimatedSection'
 import PageHero from '../components/PageHero'
 
@@ -13,7 +13,7 @@ export default function DepartmentDetail() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
         <h2 className="text-2xl font-bold t-h mb-4">Department not found</h2>
-        <Link to="/departments" className="text-blue-600 hover:underline">Back to Departments</Link>
+        <Link to="/departments" className="text-orange-500 hover:underline">Back to Departments</Link>
       </div>
     </div>
   )
@@ -28,7 +28,7 @@ export default function DepartmentDetail() {
       />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-        <Link to="/departments" className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:gap-3 transition-all mb-8">
+        <Link to="/departments" className="inline-flex items-center gap-2 text-orange-500 dark:text-orange-400 hover:gap-3 transition-all mb-8">
           <ArrowLeft size={16} /> Back to Departments
         </Link>
 
@@ -37,13 +37,13 @@ export default function DepartmentDetail() {
           <div className="lg:col-span-2 space-y-8">
             {/* About & Vision */}
             <AnimatedSection>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <h2 className="text-xl font-bold t-h mb-3">
                   About the Department
                 </h2>
                 <p className="t-h-sec leading-relaxed mb-4">{dept.about}</p>
-                <div className="p-4 bg-[rgba(59,130,246,0.08)] rounded-xl">
-                  <h3 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Vision</h3>
+                <div className="p-4 bg-[rgba(249,115,22,0.08)] rounded-xl">
+                  <h3 className="font-semibold text-orange-700 dark:text-orange-300 mb-2">Vision</h3>
                   <p className="t-h-sec text-sm">{dept.vision}</p>
                 </div>
               </div>
@@ -51,14 +51,14 @@ export default function DepartmentDetail() {
 
             {/* Programs */}
             <AnimatedSection delay={0.1}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <h2 className="text-xl font-bold t-h mb-4 flex items-center gap-2">
-                  <GraduationCap size={20} className="text-blue-600" /> Programs Offered
+                  <GraduationCap size={20} className="text-orange-500" /> Programs Offered
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {dept.programs.map((p, i) => (
                     <div key={i} className="flex items-center gap-3 p-3 bg-[rgba(15,23,42,0.6)] rounded-xl">
-                      <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                      <div className="w-2 h-2 rounded-full bg-orange-500 shrink-0" />
                       <span className="t-h-sec text-sm font-medium">{p}</span>
                     </div>
                   ))}
@@ -68,9 +68,9 @@ export default function DepartmentDetail() {
 
             {/* Faculty */}
             <AnimatedSection delay={0.15}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <h2 className="text-xl font-bold t-h mb-4 flex items-center gap-2">
-                  <Users size={20} className="text-blue-600" /> Faculty
+                  <Users size={20} className="text-orange-500" /> Faculty
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {dept.faculty.map((f, i) => (
@@ -80,7 +80,7 @@ export default function DepartmentDetail() {
                       <img src={f.image} alt={f.name} className="w-12 h-12 rounded-full object-cover" />
                       <div>
                         <div className="font-semibold t-h text-sm">{f.name}</div>
-                        <div className="text-xs text-blue-600 dark:text-blue-400">{f.designation}</div>
+                        <div className="text-xs text-orange-500 dark:text-orange-400">{f.designation}</div>
                         <div className="text-xs text-gray-500">{f.specialization}</div>
                       </div>
                     </motion.div>
@@ -91,14 +91,14 @@ export default function DepartmentDetail() {
 
             {/* Labs */}
             <AnimatedSection delay={0.2}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <h2 className="text-xl font-bold t-h mb-4 flex items-center gap-2">
-                  <FlaskConical size={20} className="text-blue-600" /> Labs & Facilities
+                  <FlaskConical size={20} className="text-orange-500" /> Labs & Facilities
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {dept.labs.map((lab, i) => (
                     <div key={i} className="flex items-center gap-2 p-3 bg-[rgba(15,23,42,0.6)] rounded-xl text-sm t-h-sec">
-                      <FlaskConical size={14} className="text-cyan-500 shrink-0" /> {lab}
+                      <FlaskConical size={14} className="text-orange-500 shrink-0" /> {lab}
                     </div>
                   ))}
                 </div>
@@ -107,9 +107,9 @@ export default function DepartmentDetail() {
 
             {/* Achievements */}
             <AnimatedSection delay={0.25}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <h2 className="text-xl font-bold t-h mb-4 flex items-center gap-2">
-                  <Trophy size={20} className="text-blue-600" /> Achievements
+                  <Trophy size={20} className="text-orange-500" /> Achievements
                 </h2>
                 <div className="space-y-2">
                   {dept.achievements.map((a, i) => (
@@ -124,7 +124,7 @@ export default function DepartmentDetail() {
 
             {/* Gallery */}
             <AnimatedSection delay={0.3}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <h2 className="text-xl font-bold t-h mb-4">Gallery</h2>
                 <div className="grid grid-cols-2 gap-3">
                   {dept.gallery.map((img, i) => (
@@ -141,7 +141,7 @@ export default function DepartmentDetail() {
           <div className="space-y-6">
             {/* HOD Card */}
             <AnimatedSection direction="left">
-              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl p-6 t-h">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 t-h">
                 <h3 className="font-bold text-lg mb-4">Head of Department</h3>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center text-2xl font-bold">
@@ -149,14 +149,14 @@ export default function DepartmentDetail() {
                   </div>
                   <div>
                     <div className="font-semibold">{dept.hod.name}</div>
-                    <div className="text-blue-100 text-sm">HOD, {dept.shortName}</div>
+                    <div className="text-orange-100 text-sm">HOD, {dept.shortName}</div>
                   </div>
                 </div>
                 <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2 text-blue-100">
+                  <div className="flex items-center gap-2 text-orange-100">
                     <Mail size={14} /> {dept.hod.email}
                   </div>
-                  <div className="flex items-center gap-2 text-blue-100">
+                  <div className="flex items-center gap-2 text-orange-100">
                     <Phone size={14} /> {dept.hod.phone}
                   </div>
                 </div>
@@ -165,10 +165,10 @@ export default function DepartmentDetail() {
 
             {/* Map */}
             <AnimatedSection direction="left" delay={0.1}>
-              <div className="rounded-2xl overflow-hidden shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl overflow-hidden shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <iframe
                   title="RNSIT Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d77.5!3d12.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                  src="https://maps.google.com/maps?q=RNS+Institute+of+Technology,+Dr+Vishnuvardhan+Road,+RR+Nagar,+Bengaluru+560098&output=embed&z=16"
                   width="100%"
                   height="200"
                   style={{ border: 0 }}
@@ -178,7 +178,7 @@ export default function DepartmentDetail() {
                 />
                 <div className="p-4">
                   <div className="flex items-start gap-2 text-sm t-h-sec">
-                    <MapPin size={14} className="text-blue-500 mt-0.5 shrink-0" />
+                    <MapPin size={14} className="text-orange-500 mt-0.5 shrink-0" />
                     Dr. Vishnuvardhan Road, R.R. Nagar, Bengaluru - 560098
                   </div>
                 </div>
@@ -187,12 +187,12 @@ export default function DepartmentDetail() {
 
             {/* Quick Links */}
             <AnimatedSection direction="left" delay={0.2}>
-              <div className="rounded-2xl p-6 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-6 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <h3 className="font-bold t-h mb-4">Other Departments</h3>
                 <div className="space-y-2">
                   {departments.filter(d => d.id !== id).slice(0, 4).map(d => (
                     <Link key={d.id} to={`/departments/${d.id}`}
-                      className="flex items-center gap-2 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 t-h-sec hover:text-blue-600 transition-colors text-sm"
+                      className="flex items-center gap-2 p-2 rounded-lg hover:bg-orange-50 dark:hover:bg-orange-900/20 t-h-sec hover:text-orange-500 transition-colors text-sm"
                     >
                       <span>{d.icon}</span> {d.shortName} — {d.name.split(' ')[0]}
                     </Link>

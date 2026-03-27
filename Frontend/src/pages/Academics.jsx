@@ -25,10 +25,10 @@ const calendar = [
 ]
 
 const typeColors = {
-  UG: 'bg-[rgba(59,130,246,0.12)] text-blue-600 dark:text-blue-400',
+  UG: 'bg-[rgba(249,115,22,0.12)] text-orange-500 dark:text-orange-400',
   PG: 'bg-[rgba(168,85,247,0.12)] text-purple-600 dark:text-purple-400',
   PhD: 'bg-[rgba(34,197,94,0.12)] text-green-600 dark:text-green-400',
-  Academic: 'bg-[rgba(59,130,246,0.12)] text-blue-600',
+  Academic: 'bg-[rgba(249,115,22,0.12)] text-orange-500',
   Exam: 'bg-[rgba(239,68,68,0.12)] text-red-600',
 }
 
@@ -48,10 +48,10 @@ export default function Academics() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {courses.map((c, i) => (
             <AnimatedSection key={i} delay={i * 0.07}>
-              <div className="rounded-2xl p-5 shadow-sm border border-blue-500/10 hover:shadow-lg transition-shadow" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+              <div className="rounded-2xl p-5 shadow-sm border border-orange-500/10 hover:shadow-lg transition-shadow" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
                 <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-[rgba(59,130,246,0.12)] flex items-center justify-center">
-                    <GraduationCap size={20} className="text-blue-600" />
+                  <div className="w-10 h-10 rounded-xl bg-[rgba(249,115,22,0.12)] flex items-center justify-center">
+                    <GraduationCap size={20} className="text-orange-500" />
                   </div>
                   <span className={`px-2 py-1 rounded-lg text-xs font-semibold ${typeColors[c.type]}`}>{c.type}</span>
                 </div>
@@ -75,9 +75,9 @@ export default function Academics() {
           <div className="space-y-3">
             {calendar.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.07}>
-                <div className="flex items-center gap-4 rounded-xl p-4 shadow-sm border border-blue-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
-                  <div className="w-10 h-10 rounded-xl bg-[rgba(59,130,246,0.12)] flex items-center justify-center shrink-0">
-                    <Calendar size={18} className="text-blue-600" />
+                <div className="flex items-center gap-4 rounded-xl p-4 shadow-sm border border-orange-500/10" style={{ background: "var(--card)", border: "1px solid var(--border)" }}>
+                  <div className="w-10 h-10 rounded-xl bg-[rgba(249,115,22,0.12)] flex items-center justify-center shrink-0">
+                    <Calendar size={18} className="text-orange-500" />
                   </div>
                   <div className="flex-1">
                     <div className="font-medium t-h text-sm">{item.event}</div>

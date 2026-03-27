@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowRight, Award, Users, BookOpen, Building2, Trophy, Zap } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
-import { departments } from '../data/departments'
+import { departments, stats as collegeStats, companies as recruiterList, collegeInfo } from '../data/college'
 
 function useCountUp(end, duration = 2000) {
   const [count, setCount] = useState(0)
@@ -41,7 +41,7 @@ const testimonials = [
   { name: 'Priya Nair', batch: 'ECE 2021', company: 'Qualcomm', text: 'The research opportunities and industry exposure at RNSIT are unmatched. Best decision of my life.', avatar: 'https://i.pravatar.cc/80?img=21' },
   { name: 'Rahul Mehta', batch: 'ME 2023', company: 'ISRO', text: 'The practical approach to learning and excellent placement support helped me land my dream job.', avatar: 'https://i.pravatar.cc/80?img=22' },
 ]
-const companies = ['Google', 'Microsoft', 'Amazon', 'Infosys', 'TCS', 'Wipro', 'Accenture', 'IBM', 'Qualcomm', 'Intel', 'Cisco', 'Oracle']
+const companies = recruiterList.slice(0, 20)
 
 export default function Home() {
   const [wordIdx, setWordIdx] = useState(0)
@@ -57,7 +57,7 @@ export default function Home() {
         style={{ background: 'var(--hero)' }}>
         {/* Floating orbs — subtle in light, glowing in dark */}
         <div className="absolute top-32 left-16 w-20 h-20 rounded-full animate-float opacity-40 dark:opacity-60"
-          style={{ background: 'radial-gradient(circle at 30% 30%, #bfdbfe, #dbeafe)', boxShadow: '0 0 40px rgba(37,99,235,0.2)' }} />
+          style={{ background: 'radial-gradient(circle at 30% 30%, #fed7aa, #ffedd5)', boxShadow: '0 0 40px rgba(249,115,22,0.2)' }} />
         <div className="absolute bottom-40 right-20 w-14 h-14 rounded-full animate-float-delay opacity-30 dark:opacity-50"
           style={{ background: 'radial-gradient(circle at 30% 30%, #ddd6fe, #ede9fe)', boxShadow: '0 0 30px rgba(124,58,237,0.2)' }} />
         {/* Grid */}
@@ -67,7 +67,7 @@ export default function Home() {
         <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
             className="badge mb-8">
-            <Zap size={10} className="inline mr-1" /> Ranked #1 in Karnataka — NAAC A+
+            <Zap size={10} className="inline mr-1" /> Top 10 Engineering Colleges in Karnataka — NAAC A+
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
@@ -92,7 +92,7 @@ export default function Home() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
             className="flex flex-wrap justify-center gap-4">
-            <Link to="/admissions" className="btn-primary flex items-center gap-2 text-sm">
+            <Link to="/apply" className="btn-primary flex items-center gap-2 text-sm">
               Apply Now <ArrowRight size={15} />
             </Link>
             <Link to="/departments" className="btn-outline text-sm">
@@ -111,11 +111,10 @@ export default function Home() {
 
       {/* ── STATS ── */}
       <section className="py-16 t-bg-alt" style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <StatItem value={5000} label="Students Enrolled" suffix="+" />
-          <StatItem value={300} label="Expert Faculty" suffix="+" />
-          <StatItem value={95} label="Placement Rate" suffix="%" />
-          <StatItem value={20} label="Years of Excellence" suffix="+" />
+        <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {collegeStats.slice(0, 12).map((s, i) => (
+            <StatItem key={i} value={s.value} label={s.label} suffix={s.suffix} />
+          ))}
         </div>
       </section>
 
@@ -129,7 +128,7 @@ export default function Home() {
                 style={{ boxShadow: 'var(--shadow-lg)', border: '1px solid var(--card-border)' }} />
               <div className="absolute -bottom-5 -right-5 rounded-2xl p-4 card">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(37,99,235,0.1)' }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(249,115,22,0.1)' }}>
                     <Trophy size={20} style={{ color: 'var(--accent)' }} />
                   </div>
                   <div>
@@ -189,7 +188,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="p-5">
-                    <h3 className="font-bold t-h text-sm mb-2 group-hover:text-blue-600 transition-colors">{dept.name}</h3>
+                    <h3 className="font-bold t-h text-sm mb-2 group-hover:text-orange-500 transition-colors">{dept.name}</h3>
                     <p className="text-xs t-m line-clamp-2 mb-3">{dept.about}</p>
                     <div className="flex items-center gap-1 text-sm font-semibold group-hover:gap-2 transition-all" style={{ color: 'var(--accent)' }}>
                       Explore <ArrowRight size={12} />
@@ -244,7 +243,7 @@ export default function Home() {
               className="card p-8 text-center">
               <img src={testimonials[tIdx].avatar} alt={testimonials[tIdx].name}
                 className="w-16 h-16 rounded-full mx-auto mb-5 object-cover"
-                style={{ border: '3px solid var(--accent)', boxShadow: '0 0 0 4px rgba(37,99,235,0.1)' }} />
+                style={{ border: '3px solid var(--accent)', boxShadow: '0 0 0 4px rgba(249,115,22,0.1)' }} />
               <p className="t-b text-lg italic mb-6 leading-relaxed">"{testimonials[tIdx].text}"</p>
               <div className="font-bold t-h">{testimonials[tIdx].name}</div>
               <div className="text-sm t-m">{testimonials[tIdx].batch} · {testimonials[tIdx].company}</div>
@@ -265,7 +264,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <AnimatedSection>
             <div className="rounded-2xl p-12 relative overflow-hidden"
-              style={{ background: 'linear-gradient(135deg,rgba(37,99,235,0.08),rgba(8,145,178,0.06))', border: '1px solid var(--card-border)' }}>
+              style={{ background: 'linear-gradient(135deg,rgba(249,115,22,0.08),rgba(8,145,178,0.06))', border: '1px solid var(--card-border)' }}>
               <h2 className="text-3xl md:text-4xl font-black t-h mb-4">Ready to Start Your Journey?</h2>
               <p className="t-m mb-8">Join thousands of students who have built their careers at RNSIT</p>
               <div className="flex flex-wrap justify-center gap-4">

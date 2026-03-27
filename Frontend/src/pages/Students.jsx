@@ -23,7 +23,7 @@ const resources = [
 const typeColors = {
   Exam: 'bg-[rgba(239,68,68,0.12)] text-red-600',
   Scholarship: 'bg-[rgba(34,197,94,0.12)] text-green-600',
-  Placement: 'bg-[rgba(59,130,246,0.12)] text-blue-600',
+  Placement: 'bg-[rgba(249,115,22,0.12)] text-orange-500',
   Event: 'bg-[rgba(168,85,247,0.12)] text-purple-600',
   General: 'bg-[rgba(15,23,42,0.6)] text-gray-500',
 }
@@ -43,15 +43,15 @@ export default function Students() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {resources.map((r, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <a href={r.link} className="group flex items-start gap-4 rounded-2xl p-5 shadow-sm border border-blue-500/10 hover:shadow-lg hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
-                <div className="w-10 h-10 rounded-xl bg-[rgba(59,130,246,0.12)] flex items-center justify-center shrink-0">
-                  <BookOpen size={18} className="text-blue-600" />
+              <a href={r.link} className="group flex items-start gap-4 rounded-2xl p-5 shadow-sm border border-orange-500/10 hover:shadow-lg hover:-translate-y-1 transition-all" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
+                <div className="w-10 h-10 rounded-xl bg-[rgba(249,115,22,0.12)] flex items-center justify-center shrink-0">
+                  <BookOpen size={18} className="text-orange-500" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold t-h mb-1 group-hover:text-blue-600 transition-colors">{r.title}</h3>
+                  <h3 className="font-bold t-h mb-1 group-hover:text-orange-500 transition-colors">{r.title}</h3>
                   <p className="text-sm t-h-mut">{r.desc}</p>
                 </div>
-                <ExternalLink size={16} className="text-gray-300 group-hover:text-blue-500 transition-colors shrink-0 mt-1" />
+                <ExternalLink size={16} className="text-gray-300 group-hover:text-orange-500 transition-colors shrink-0 mt-1" />
               </a>
             </AnimatedSection>
           ))}
@@ -67,9 +67,9 @@ export default function Students() {
           <div className="space-y-3">
             {notices.map((n, i) => (
               <AnimatedSection key={i} delay={i * 0.07}>
-                <div className={`flex items-center gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border transition-shadow hover:shadow-md ${n.urgent ? 'border-red-200 dark:border-red-900/50' : 'border-blue-500/10'}`}>
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${n.urgent ? 'bg-[rgba(239,68,68,0.12)]' : 'bg-[rgba(59,130,246,0.12)]'}`}>
-                    <Bell size={16} className={n.urgent ? 'text-red-500' : 'text-blue-500'} />
+                <div className={`flex items-center gap-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border transition-shadow hover:shadow-md ${n.urgent ? 'border-red-200 dark:border-red-900/50' : 'border-orange-500/10'}`}>
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${n.urgent ? 'bg-[rgba(239,68,68,0.12)]' : 'bg-[rgba(249,115,22,0.12)]'}`}>
+                    <Bell size={16} className={n.urgent ? 'text-red-500' : 'text-orange-500'} />
                   </div>
                   <div className="flex-1">
                     <div className="font-medium t-h text-sm">{n.title}</div>
