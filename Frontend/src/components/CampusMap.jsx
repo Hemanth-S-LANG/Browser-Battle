@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ZoomIn, ZoomOut, Maximize2, MapPin } from 'lucide-react'
+import { X, ZoomIn, ZoomOut, Maximize2, MapPin, Map, Satellite } from 'lucide-react'
 
 const BUILDINGS = [
   {
@@ -205,6 +205,7 @@ function Building({ b, selected, onClick }) {
 }
 
 export default function CampusMap() {
+  const [view, setView] = useState('map') // 'map' | 'satellite'
   const [selected, setSelected] = useState(null)
   const [zoom, setZoom] = useState(1)
   const [pan, setPan] = useState({ x: 0, y: 0 })
@@ -231,6 +232,49 @@ export default function CampusMap() {
   return (
     <div className="relative w-full rounded-2xl overflow-hidden"
       style={{ background: 'var(--surface)', border: '1px solid var(--card-border)', height: '520px' }}>
+
+      {/* Tab switcher */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1 p-1 rounded-xl"
+        style={{ background: 'var(--card)', border: '1px solid var(--card-border)', backdropFilter: 'blur(8px)' }}>
+        {[
+          { id: 'map', label: 'Campus Map', icon: Map },
+          { id: 'satellite', label: 'Satellite', icon: Satellite },
+        ].map(({ id, label, icon: Icon }) => (
+          <button key={id} onClick={() => setView(id)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
+            style={{
+              background: view === id ? 'var(--accent)' : 'transparent',
+              color: view === id ? 'white' : 'var(--t3)',
+            }}>
+            <Icon size={12} /> {label}
+          </button>
+        ))}
+      </div>
+
+      {/* Satellite Google Maps embed */}
+      {view === 'satellite' && (
+        <motion.div key="satellite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 z-10">
+          <iframe
+            title="RNSIT Campus Satellite View"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.069!2d77.51516!3d12.91408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3ee159b3d7b5%3A0xb7f6b6b6b6b6b6b6!2sRNS%20Institute%20of%20Technology%2C%20Channasandra%2C%20Bengaluru!5e1!3m2!1sen!2sin!4v1711500000000!5m2!1sen!2sin"
+          />
+          <div className="absolute bottom-3 left-3 z-20 px-3 py-1.5 rounded-lg text-xs font-medium text-white"
+            style={{ background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(6px)' }}>
+            <MapPin size={10} className="inline mr-1" style={{ color: 'var(--accent)' }} />
+            RNS Institute of Technology, Bengaluru
+          </div>
+        </motion.div>
+      )}
+
+      {/* SVG Campus Map */}
+      {view === 'map' && (
+        <motion.div key="map" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0">
 
       {/* Controls */}
       <div className="absolute top-3 right-3 z-20 flex flex-col gap-2">
@@ -325,6 +369,9 @@ export default function CampusMap() {
           </g>
         </g>
       </svg>
+
+      </motion.div>
+      )} {/* end map view */}
 
       {/* Info Panel */}
       <AnimatePresence>
