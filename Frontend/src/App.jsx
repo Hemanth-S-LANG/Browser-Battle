@@ -16,6 +16,9 @@ import Alumni from './pages/Alumni'
 import Contact from './pages/Contact'
 import Students from './pages/Students'
 import Apply from './pages/Apply'
+import PlacementDashboard from './pages/PlacementDashboard'
+import EventRegister from './pages/EventRegister'
+import AlumniRegister from './pages/AlumniRegister'
 import ScrollToTop from './components/ScrollToTop'
 import ParticleCanvas from './components/ParticleCanvas'
 import Chatbot from './components/Chatbot'
@@ -56,6 +59,9 @@ export default function App() {
             <Route path="/alumni" element={<Alumni />} />
             <Route path="/students" element={<Students />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/placement-dashboard" element={<PlacementDashboard />} />
+          <Route path="/events/register/:id" element={<EventRegister />} />
+          <Route path="/alumni/register" element={<AlumniRegister />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
           <Footer />

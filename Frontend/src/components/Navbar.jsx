@@ -14,6 +14,7 @@ const navLinks = [
     label: 'More', path: '#',
     children: [
       { label: 'Placements', path: '/placements' },
+      { label: 'Placement Dashboard', path: '/placement-dashboard' },
       { label: 'Research', path: '/research' },
       { label: 'Campus Life', path: '/campus-life' },
       { label: 'Events', path: '/events' },

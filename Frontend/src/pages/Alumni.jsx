@@ -1,4 +1,5 @@
 import { Globe, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import AnimatedSection from '../components/AnimatedSection'
 
@@ -101,9 +102,9 @@ export default function Alumni() {
           <h2 className="text-3xl font-bold t-h mb-4">Join the Alumni Network</h2>
           <p className="t-h-mut mb-8">Stay connected, give back, and help shape the next generation of RNSIT engineers.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="#" className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 t-h font-semibold rounded-xl hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2">
+            <Link to="/alumni/register" className="px-6 py-3 btn-primary font-semibold rounded-xl flex items-center gap-2">
               Register as Alumni <ArrowRight size={16} />
-            </a>
+            </Link>
             <a href="#" className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:border-orange-500 hover:text-orange-500 transition-all flex items-center gap-2">
               <Globe size={16} /> Alumni Portal
             </a>

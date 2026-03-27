@@ -1,4 +1,5 @@
 import { TrendingUp, Users, Building2, Award } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import AnimatedSection from '../components/AnimatedSection'
 import { useRef, useEffect, useState } from 'react'
@@ -70,6 +71,10 @@ export default function Placements() {
       <section className="section-padding max-w-7xl mx-auto">
         <AnimatedSection className="text-center mb-12">
           <h2 className="text-3xl font-bold t-h mb-3">Year-wise <span className="text-gradient">Statistics</span></h2>
+          <Link to="/placement-dashboard"
+            className="inline-flex items-center gap-2 mt-4 btn-primary text-sm px-6 py-2.5">
+            View Full Analytics Dashboard
+          </Link>
         </AnimatedSection>
         <div className="overflow-x-auto">
           <table className="w-full rounded-2xl shadow-sm border border-orange-500/10 overflow-hidden" style={{ background: "var(--card)", border: "1px solid var(--border)", backdropFilter: "blur(12px)" }}>
